@@ -11,9 +11,11 @@ namespace NeptuneServer.Communication.Incoming.Packets
     {
         public void ExecutePacket(ClientSocket clientSocket, ClientPacket clientPacket)
         {
+            int i = clientPacket.ReadInt();
             string authToken = clientPacket.ReadString();
             string applicationId = clientPacket.ReadString();
 
+            Console.WriteLine(i);
             Console.WriteLine(authToken);
             Console.WriteLine(applicationId);
         }

@@ -8,5 +8,6 @@ namespace NeptuneServer.Server.Database
 {
     public class DatabaseManager
     {
+
     }
 }

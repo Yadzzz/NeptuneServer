@@ -51,7 +51,7 @@ namespace NeptuneServer.Server.Connection
             if(this._server == null)
             {
                 this._server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                this._server.Bind(new IPEndPoint(IPAddress.Any, 30005));
+                this._server.Bind(new IPEndPoint(IPAddress.Any, 30000));
                 this._server.Listen(1000);
 
                 Console.WriteLine("Network Listener Initialized");

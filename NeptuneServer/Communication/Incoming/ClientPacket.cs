@@ -22,7 +22,7 @@ namespace NeptuneServer.Communication.Incoming
 
         public string ReadString()
         {
-            return BitConverter.ToString(this.ReadBytes(this.ReadShort()));
+            return Encoding.ASCII.GetString(this.ReadBytes(this.ReadShort()));
         }
 
         public int ReadInt()
