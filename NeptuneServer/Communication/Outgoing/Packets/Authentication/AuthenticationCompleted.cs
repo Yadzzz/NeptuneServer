@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace NeptuneServer.Communication.Outgoing.Packets
 {
-    public class AuthenticationComplete : ServerPacket
+    public class AuthenticationCompleted : ServerPacket
     {
-        public AuthenticationComplete() : base(OutgoingPacketHeaders.AuthenticationComplete)
+        public AuthenticationCompleted() : base(OutgoingPacketHeaders.AuthenticationComplete)
         {
 
         }

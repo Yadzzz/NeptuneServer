@@ -8,9 +8,9 @@ namespace NeptuneServer.Communication.Outgoing.Packets
 {
     public class AuthenticationDenied : ServerPacket
     {
-        public AuthenticationDenied() : base(OutgoingPacketHeaders.AuthenticationDenied)
+        public AuthenticationDenied(string error) : base(OutgoingPacketHeaders.AuthenticationDenied)
         {
-
+            base.WriteString(error);
         }
     }
 }

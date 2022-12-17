@@ -17,6 +17,8 @@ namespace NeptuneServer.Communication
         {
             this.Packets = new Dictionary<int, IPacket>();
             this.LoadPackets();
+
+            Console.WriteLine("CommunicationManager Initialized ->");
         }
 
         public bool GetPacket(int header, out IPacket packet)

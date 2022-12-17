@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NeptuneServer.Communication;
 using NeptuneServer.Communication.Incoming;
+using NeptuneServer.Neptune.Client;
 
 namespace NeptuneServer.Server.Connection
 {
@@ -13,11 +14,14 @@ namespace NeptuneServer.Server.Connection
     {
         private Socket _clientSocket;
         private byte[] data;
+        public Client Client;
 
         public ClientSocket(Socket clientSocket)
         {
             this._clientSocket = clientSocket;
             this.data = new byte[1024];
+            this.Client = null;
+
             this.Recieve();
         }
 
@@ -60,6 +64,18 @@ namespace NeptuneServer.Server.Connection
 
                     this.Recieve();
                 }
+            }
+            catch
+            {
+                this.Disconnect();
+            }
+        }
+
+        public void Send(byte[] data)
+        {
+            try
+            {
+                this._clientSocket.Send(data, 0, data.Length, SocketFlags.None);
             }
             catch
             {

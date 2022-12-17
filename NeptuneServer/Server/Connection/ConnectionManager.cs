@@ -16,6 +16,8 @@ namespace NeptuneServer.Server.Connection
         {
             this._serverSocket = new ServerSocket();
             this._clients= new List<ClientSocket>();
+
+            Console.WriteLine("ConnectionManager Initialized ->");
         }
 
         public void AddActiveClient(ClientSocket client)
