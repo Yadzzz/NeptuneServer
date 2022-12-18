@@ -19,29 +19,36 @@ namespace NeptuneServer.Neptune.Client.Users
                 return false;
             }
 
-            using (var command = new DatabaseCommand())
+            try
             {
-                command.SetCommand("SELECT * FROM users WHERE auth_token = @auth LIMIT 1");
-                command.AddParameter("auth", authToken);
-
-                using (var reader = command.ExecuteDataReader())
+                using (var command = new DatabaseCommand())
                 {
-                    if (reader == null)
-                    {
-                        return false;
-                    }
+                    command.SetCommand("SELECT * FROM users WHERE auth_token = @auth LIMIT 1");
+                    command.AddParameter("auth", authToken);
 
-                    while (reader.Read())
+                    using (var reader = command.ExecuteDataReader())
                     {
-                        user = new User
+                        if (reader == null)
                         {
-                            Id = Convert.ToInt32(reader["id"]),
-                            Username = reader["username"].ToString(),
-                            EmailAdress = reader["email_adress"].ToString(),
-                            AuthToken = authToken
-                        };
+                            return false;
+                        }
+
+                        while (reader.Read())
+                        {
+                            user = new User
+                            {
+                                Id = Convert.ToInt32(reader["id"]),
+                                Username = reader["username"].ToString(),
+                                EmailAdress = reader["email_adress"].ToString(),
+                                AuthToken = authToken
+                            };
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                //Log to file
             }
 
             return user != null;

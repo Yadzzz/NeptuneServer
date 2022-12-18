@@ -13,30 +13,37 @@ namespace NeptuneServer.Neptune.Applications
         {
             application = null;
 
-            using (var command = new DatabaseCommand())
+            try
             {
-                command.SetCommand("SELECT * FROM applications WHERE id = @id AND user_id = @userid");
-                command.AddParameter("id", appId);
-                command.AddParameter("userid", userId);
-
-                using (var reader = command.ExecuteDataReader())
+                using (var command = new DatabaseCommand())
                 {
-                    if(reader == null)
-                    {
-                        return false;
-                    }
-                    
-                    if(reader.HasRows)
-                    {
-                        application = new Application
-                        {
-                            Id = appId,
-                            UserId = userId
-                        };
+                    command.SetCommand("SELECT * FROM applications WHERE id = @id AND user_id = @userid");
+                    command.AddParameter("id", appId);
+                    command.AddParameter("userid", userId);
 
-                        return true;
+                    using (var reader = command.ExecuteDataReader())
+                    {
+                        if (reader == null)
+                        {
+                            return false;
+                        }
+
+                        if (reader.HasRows)
+                        {
+                            application = new Application
+                            {
+                                Id = appId,
+                                UserId = userId
+                            };
+
+                            return true;
+                        }
                     }
                 }
+            }
+            catch(Exception ex)
+            {
+                //Log to file
             }
 
             return application != null;

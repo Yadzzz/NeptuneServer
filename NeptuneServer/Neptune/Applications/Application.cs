@@ -18,15 +18,22 @@ namespace NeptuneServer.Neptune.Applications
 
         public void Log(Log log)
         {
-            using (var command = new DatabaseCommand())
+            try
             {
-                command.SetCommand("INSERT INTO applications_logs (application_id, type, text, date) VALUES (@appid, @type, @text, @date)");
-                command.AddParameter("appid", this.Id);
-                command.AddParameter("type", log.Type.ToString());
-                command.AddParameter("text", log.Text);
-                command.AddParameter("date", log.Date);
+                using (var command = new DatabaseCommand())
+                {
+                    command.SetCommand("INSERT INTO applications_logs (application_id, type, text, date) VALUES (@appid, @type, @text, @date)");
+                    command.AddParameter("appid", this.Id);
+                    command.AddParameter("type", log.Type.ToString());
+                    command.AddParameter("text", log.Text);
+                    command.AddParameter("date", log.Date);
 
-                command.ExecuteQuery();
+                    command.ExecuteQuery();
+                }
+            }
+            catch(Exception ex)
+            {
+                //Log to file
             }
         }
     }

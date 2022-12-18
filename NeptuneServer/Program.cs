@@ -6,6 +6,8 @@ namespace NeptuneServer
     {
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.White;
+
             NeptuneEnvironment.GetNeptuneEnvironment().Initialize();
 
             while(true)

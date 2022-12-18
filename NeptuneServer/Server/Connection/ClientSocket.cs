@@ -57,8 +57,6 @@ namespace NeptuneServer.Server.Connection
                     {
                         AuthenticationDeniedComposer packet = new AuthenticationDeniedComposer("Authentication Required");
                         this.Send(packet.Finalize());
-
-                        Console.WriteLine("Not Authed");
                     }
                     else
                     {
