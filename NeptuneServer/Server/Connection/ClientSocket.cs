@@ -52,11 +52,13 @@ namespace NeptuneServer.Server.Connection
                     ClientPacket clientPacket = new ClientPacket(newBytes, header);
 
                     Console.WriteLine("Packet ID [" + header + "] Recieved!");
-
-                    if (this.Client != null && !this.Client.IsAuthenticated(out string error))
+                    
+                    if (this.Client == null && header != IncomingPacketHeaders.AuthenticationRequestEvent)
                     {
-                        AuthenticationDeniedComposer packet = new AuthenticationDeniedComposer(error);
+                        AuthenticationDeniedComposer packet = new AuthenticationDeniedComposer("Authentication Required");
                         this.Send(packet.Finalize());
+
+                        Console.WriteLine("Not Authed");
                     }
                     else
                     {
@@ -74,8 +76,9 @@ namespace NeptuneServer.Server.Connection
                     this.Recieve();
                 }
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine(e.ToString());
                 this.Disconnect();
             }
         }

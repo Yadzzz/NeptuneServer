@@ -20,7 +20,8 @@ namespace NeptuneServer.Neptune.Applications
         {
             using (var command = new DatabaseCommand())
             {
-                command.SetCommand("INSERT INTO application_logs () VALUES (@type, @text, @date)");
+                command.SetCommand("INSERT INTO applications_logs (application_id, type, text, date) VALUES (@appid, @type, @text, @date)");
+                command.AddParameter("appid", this.Id);
                 command.AddParameter("type", log.Type.ToString());
                 command.AddParameter("text", log.Text);
                 command.AddParameter("date", log.Date);

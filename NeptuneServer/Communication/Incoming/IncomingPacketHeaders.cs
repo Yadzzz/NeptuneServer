@@ -9,6 +9,9 @@ namespace NeptuneServer.Communication.Incoming
     public class IncomingPacketHeaders
     {
         //AuthenticationRequest
-        public const int AuthenticationRequest = 1001;
+        public const int AuthenticationRequestEvent = 1001;
+
+        //Application
+        public const int ApplicationLogEvent = 1010;
     }
 }
