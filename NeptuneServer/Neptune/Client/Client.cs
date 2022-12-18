@@ -18,5 +18,24 @@ namespace NeptuneServer.Neptune.Client
             this.User = user;
             this.Application = application; ;
         }
+
+        public bool IsAuthenticated(out string error)
+        {
+            error = string.Empty;
+
+            if (this.User == null)
+            {
+                error = "User not Authenticated";
+                return false;
+            }
+
+            if(this.Application == null)
+            {
+                error = "Application not Authenticated";
+                return false;
+            }
+            
+            return true;
+        }
     }
 }

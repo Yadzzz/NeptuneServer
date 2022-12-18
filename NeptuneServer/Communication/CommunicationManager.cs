@@ -28,7 +28,7 @@ namespace NeptuneServer.Communication
 
         public void LoadPackets()
         {
-            this.Packets.Add(IncomingPacketHeaders.AuthenticationRequest, new AuthenticationRequest());
+            this.Packets.Add(IncomingPacketHeaders.AuthenticationRequest, new AuthenticationRequestEvent());
         }
     }
 }

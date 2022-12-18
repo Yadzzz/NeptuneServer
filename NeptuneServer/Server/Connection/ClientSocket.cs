@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NeptuneServer.Communication;
 using NeptuneServer.Communication.Incoming;
+using NeptuneServer.Communication.Outgoing.Packets;
 using NeptuneServer.Neptune.Client;
 
 namespace NeptuneServer.Server.Connection
@@ -52,14 +53,22 @@ namespace NeptuneServer.Server.Connection
 
                     Console.WriteLine("Packet ID [" + header + "] Recieved!");
 
-                    if (NeptuneEnvironment.GetNeptuneEnvironment().CommunicationManager.GetPacket(header, out IPacket packet))
+                    if (this.Client != null && !this.Client.IsAuthenticated(out string error))
                     {
-                        packet.ExecutePacket(this, clientPacket);
-                        Console.WriteLine("Packet ID [" + header + "] Executed!");
+                        AuthenticationDeniedComposer packet = new AuthenticationDeniedComposer(error);
+                        this.Send(packet.Finalize());
                     }
                     else
                     {
-                        Console.WriteLine("Packet ID [" + header + "] Not Found!");
+                        if (NeptuneEnvironment.GetNeptuneEnvironment().CommunicationManager.GetPacket(header, out IPacket packet))
+                        {
+                            packet.ExecutePacket(this, clientPacket);
+                            Console.WriteLine("Packet ID [" + header + "] Executed!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Packet ID [" + header + "] Not Found!");
+                        }
                     }
 
                     this.Recieve();

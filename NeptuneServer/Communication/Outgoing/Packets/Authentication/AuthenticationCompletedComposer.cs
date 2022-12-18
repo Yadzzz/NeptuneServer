@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace NeptuneServer.Communication.Outgoing.Packets
 {
-    public class AuthenticationDenied : ServerPacket
+    public class AuthenticationCompletedComposer : ServerPacket
     {
-        public AuthenticationDenied(string error) : base(OutgoingPacketHeaders.AuthenticationDenied)
+        public AuthenticationCompletedComposer() : base(OutgoingPacketHeaders.AuthenticationComplete)
         {
-            base.WriteString(error);
+
         }
     }
 }
