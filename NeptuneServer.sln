@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeptuneServer", "NeptuneServer\NeptuneServer.csproj", "{CFD70968-BBE4-409C-AD84-F5BB6215FEE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeptuneServer", "NeptuneServer\NeptuneServer.csproj", "{CFD70968-BBE4-409C-AD84-F5BB6215FEE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeptuneTests", "NeptuneTests\NeptuneTests.csproj", "{B8A1B712-F369-457D-9C8F-3BCD8AC724D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{CFD70968-BBE4-409C-AD84-F5BB6215FEE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFD70968-BBE4-409C-AD84-F5BB6215FEE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFD70968-BBE4-409C-AD84-F5BB6215FEE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8A1B712-F369-457D-9C8F-3BCD8AC724D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8A1B712-F369-457D-9C8F-3BCD8AC724D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8A1B712-F369-457D-9C8F-3BCD8AC724D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8A1B712-F369-457D-9C8F-3BCD8AC724D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
