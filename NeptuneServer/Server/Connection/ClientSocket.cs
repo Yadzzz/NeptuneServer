@@ -95,9 +95,16 @@ namespace NeptuneServer.Server.Connection
 
         private void Disconnect()
         {
-            this._clientSocket.Shutdown(SocketShutdown.Both);
-            this._clientSocket.Disconnect(false);
-            this._clientSocket.Dispose();
+            try
+            {
+                this._clientSocket.Shutdown(SocketShutdown.Both);
+                this._clientSocket.Disconnect(false);
+                this._clientSocket.Dispose();
+            }
+            catch
+            {
+
+            }
 
             Console.WriteLine("Client Disconnected");
         }
