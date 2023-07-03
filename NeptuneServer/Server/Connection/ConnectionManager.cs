@@ -39,5 +39,13 @@ namespace NeptuneServer.Server.Connection
 
             this._clients.Remove(client);
         }
+
+        public List<ClientSocket> GetActiveClients
+        {
+            get
+            {
+                return this._clients;
+            }
+        }
     }
 }

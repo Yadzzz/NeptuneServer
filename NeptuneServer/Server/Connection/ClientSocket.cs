@@ -76,7 +76,6 @@ namespace NeptuneServer.Server.Connection
             }
             catch(Exception e)
             {
-                Console.WriteLine(e.ToString());
                 this.Disconnect();
             }
         }
@@ -97,6 +96,7 @@ namespace NeptuneServer.Server.Connection
         {
             try
             {
+                NeptuneEnvironment.GetNeptuneEnvironment().ServerManager.ConnectionManager.RemoveActiveClient(this);
                 this._clientSocket.Shutdown(SocketShutdown.Both);
                 this._clientSocket.Disconnect(false);
                 this._clientSocket.Dispose();

@@ -46,6 +46,8 @@ namespace NeptuneServer.Server.Connection
             NeptuneEnvironment.GetNeptuneEnvironment().ServerManager.ConnectionManager.AddActiveClient(new ClientSocket(client));
             Console.WriteLine("Connection Accepted");
 
+            Console.WriteLine(NeptuneEnvironment.GetNeptuneEnvironment().ServerManager.ConnectionManager.GetActiveClients.Count);
+
             this.BeginAccept();
         }
 

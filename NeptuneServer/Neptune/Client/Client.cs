@@ -1,5 +1,4 @@
-﻿using NeptuneServer.Neptune.Applications;
-using NeptuneServer.Neptune.Client.Users;
+﻿using NeptuneServer.Neptune.Client.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +10,10 @@ namespace NeptuneServer.Neptune.Client
     public class Client
     {
         public User User { get; set; }
-        public Application Application { get; set; }
 
-        public Client(User user, Application application)
+        public Client(User user)
         {
             this.User = user;
-            this.Application = application; ;
         }
 
         public bool IsAuthenticated(out string error)
@@ -29,12 +26,6 @@ namespace NeptuneServer.Neptune.Client
                 return false;
             }
 
-            if(this.Application == null)
-            {
-                error = "Application not Authenticated";
-                return false;
-            }
-            
             return true;
         }
     }

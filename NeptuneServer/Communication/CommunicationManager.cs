@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using NeptuneServer.Communication.Outgoing;
 using NeptuneServer.Communication.Incoming;
 using NeptuneServer.Communication.Incoming.Packets;
-using NeptuneServer.Communication.Incoming.Packets.Application;
 
 namespace NeptuneServer.Communication
 {
@@ -30,7 +29,6 @@ namespace NeptuneServer.Communication
         public void LoadPackets()
         {
             this.Packets.Add(IncomingPacketHeaders.AuthenticationRequestEvent, new AuthenticationRequestEvent());
-            this.Packets.Add(IncomingPacketHeaders.ApplicationLogEvent, new ApplicationLogEvent());
         }
     }
 }
