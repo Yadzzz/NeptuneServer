@@ -17,8 +17,6 @@ namespace NeptuneServer
         {
             this.ServerManager = new ServerManager();
             this.CommunicationManager = new CommunicationManager();
-
-            Console.WriteLine("Neptune Server Initialized ->");
         }
 
         private static NeptuneEnvironment _neptuneEnvironment;

@@ -9,17 +9,16 @@ using System.Threading.Tasks;
 
 namespace NeptuneTests
 {
-    public class UsersTests
+    public class ApplicationTests
     {
         [Test]
-        public void TryGetUser()
+        public void TryGetApplication()
         {
-            if (UsersFactory.TryGetUser("sadasdasdasd", out User user))
+            if (ApplicationFactory.TryGetApplication(1, 1, out Application application))
             {
-                Assert.IsTrue(user != null);
-
-                Assert.AreEqual(user.Id, 1);
-                Assert.AreEqual(user.Username, "Yad");
+                Assert.IsTrue(application != null);
+                Assert.AreEqual(application.Id, 1);
+                Assert.AreEqual(application.UserId, 1);
 
                 Assert.Pass();
             }

@@ -11,19 +11,6 @@ namespace NeptuneServer.Server.Database
     {
         public DatabaseManager()
         {
-            try
-            {
-                using (MySqlConnection connection = new MySqlConnection(NeptuneConfiguration.ConnectionString))
-                {
-                    connection.Open();
-                    connection.Close();
-                }
-            }
-            catch (MySqlException e)
-            {
-                throw e;
-            }
-
             Console.WriteLine("DatabaseManager Initialized ->");
         }
 

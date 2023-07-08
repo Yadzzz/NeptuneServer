@@ -14,13 +14,22 @@ namespace NeptuneServer.Communication.Incoming.Packets
         public void ExecutePacket(ClientSocket clientSocket, ClientPacket clientPacket)
         {
             string authToken = clientPacket.ReadString();
+            int applicationId = clientPacket.ReadInt();
 
             if (UsersFactory.TryGetUser(authToken, out User user))
             {
-                    clientSocket.Client = new Neptune.Client.Client(user);
+                if (Neptune.Applications.ApplicationFactory.TryGetApplication(applicationId, user.Id, out Neptune.Applications.Application application))
+                {
+                    clientSocket.Client = new Neptune.Client.Client(user, application);
 
                     AuthenticationCompletedComposer packet = new AuthenticationCompletedComposer();
                     clientSocket.Send(packet.Finalize());
+                }
+                else
+                {
+                    AuthenticationDeniedComposer packet = new AuthenticationDeniedComposer("Invalid Application ID");
+                    clientSocket.Send(packet.Finalize());
+                }
             }
             else
             {
