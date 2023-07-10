@@ -10,11 +10,11 @@ namespace NeptuneServer.Neptune.Client.Users
 {
     public static class UsersFactory
     {
-        public static bool TryGetUser(string authToken, out User user)
+        public static bool TryGetUser(string sid, string authToken, out User user)
         {
             user = null;
 
-            if (string.IsNullOrEmpty(authToken))
+            if (string.IsNullOrEmpty(sid) || string.IsNullOrEmpty(authToken))
             {
                 return false;
             }
@@ -23,7 +23,8 @@ namespace NeptuneServer.Neptune.Client.Users
             {
                 using (var command = new DatabaseCommand())
                 {
-                    command.SetCommand("SELECT * FROM users WHERE auth_token = @auth LIMIT 1");
+                    command.SetCommand("SELECT * FROM users WHERE sid = @sid && auth_token = @auth LIMIT 1");
+                    command.AddParameter("sid", sid);
                     command.AddParameter("auth", authToken);
 
                     using (var reader = command.ExecuteDataReader())

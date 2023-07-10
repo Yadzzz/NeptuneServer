@@ -11,6 +11,19 @@ namespace NeptuneServer.Server.Database
     {
         public DatabaseManager()
         {
+            try
+            {
+                using (DatabaseCommand databaseCommand = new DatabaseCommand())
+                {
+                    databaseCommand.SetCommand("SELECT version()");
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
+
             Console.WriteLine("DatabaseManager Initialized ->");
         }
 

@@ -17,6 +17,13 @@ namespace NeptuneServer.Server.Database
             this._MySqlCommand.Connection = base._mySqlConnection;
         }
 
+        public DatabaseCommand(string command)
+        {
+            this._MySqlCommand = new MySqlCommand();
+            this._MySqlCommand.Connection = base._mySqlConnection;
+            this.SetCommand(command);
+        }
+
         public void SetCommand(string command)
         {
             this._MySqlCommand.CommandText = command;
@@ -27,15 +34,25 @@ namespace NeptuneServer.Server.Database
             this._MySqlCommand.Parameters.AddWithValue(name, value);
         }
 
-        public void ExecuteQuery()
+        public int ExecuteQuery()
         {
-            base.OpenConnection();
+            if (base._mySqlConnection.State == System.Data.ConnectionState.Closed)
+            {
+                base.OpenConnection();
+            }
+
             int rowsAffected = this._MySqlCommand.ExecuteNonQuery();
+
+            return rowsAffected;
         }
 
         public MySqlDataReader ExecuteDataReader()
         {
-            base.OpenConnection();
+            if (base._mySqlConnection.State == System.Data.ConnectionState.Closed)
+            {
+                base.OpenConnection();
+            }
+
             return this._MySqlCommand.ExecuteReader();
         }
 

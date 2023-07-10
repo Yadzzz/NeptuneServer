@@ -14,7 +14,7 @@ namespace NeptuneTests
         [Test]
         public void TryGetUser()
         {
-            if (UsersFactory.TryGetUser("sadasdasdasd", out User user))
+            if (UsersFactory.TryGetUser("123", "123", out User user))
             {
                 Assert.IsTrue(user != null);
 
@@ -22,6 +22,10 @@ namespace NeptuneTests
                 Assert.AreEqual(user.Username, "Yad");
 
                 Assert.Pass();
+            }
+            else
+            {
+                Assert.Fail();
             }
         }
     }

@@ -13,7 +13,7 @@ namespace NeptuneServer.Neptune.Applications.Logging
             LogLevel logType;
             if (Enum.TryParse(type, out logType))
             {
-
+                
             }
             else
             {

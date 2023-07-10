@@ -26,6 +26,14 @@ namespace NeptuneServer.Server.Connection
             this.Recieve();
         }
 
+        public bool IsAuthenticated
+        {
+            get
+            {
+                return this.Client != null && this.Client.User != null && this.Client.Application != null;
+            }
+        }
+
         private void Recieve()
         {
             try
@@ -53,7 +61,7 @@ namespace NeptuneServer.Server.Connection
 
                     Console.WriteLine("Packet ID [" + header + "] Recieved!");
                     
-                    if (this.Client == null && header != IncomingPacketHeaders.AuthenticationRequestEvent)
+                    if (!this.IsAuthenticated && header != IncomingPacketHeaders.AuthenticationRequestEvent)
                     {
                         AuthenticationDeniedComposer packet = new AuthenticationDeniedComposer("Authentication Required");
                         this.Send(packet.Finalize());
@@ -76,7 +84,6 @@ namespace NeptuneServer.Server.Connection
             }
             catch(Exception e)
             {
-                Console.WriteLine(e.ToString());
                 this.Disconnect();
             }
         }
@@ -106,6 +113,7 @@ namespace NeptuneServer.Server.Connection
 
             }
 
+            NeptuneEnvironment.GetNeptuneEnvironment().ServerManager.ConnectionManager.RemoveActiveClient(this);
             Console.WriteLine("Client Disconnected");
         }
     }

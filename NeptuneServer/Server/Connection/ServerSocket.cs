@@ -42,9 +42,16 @@ namespace NeptuneServer.Server.Connection
                 return;
             }
 
-            Socket client = this._server.EndAccept(result);
-            NeptuneEnvironment.GetNeptuneEnvironment().ServerManager.ConnectionManager.AddActiveClient(new ClientSocket(client));
-            Console.WriteLine("Connection Accepted");
+            try
+            {
+                Socket client = this._server.EndAccept(result);
+                NeptuneEnvironment.GetNeptuneEnvironment().ServerManager.ConnectionManager.AddActiveClient(new ClientSocket(client));
+                Console.WriteLine("Connection Accepted");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
 
             this.BeginAccept();
         }

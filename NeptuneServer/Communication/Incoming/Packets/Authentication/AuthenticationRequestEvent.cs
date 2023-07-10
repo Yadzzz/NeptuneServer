@@ -13,10 +13,11 @@ namespace NeptuneServer.Communication.Incoming.Packets
     {
         public void ExecutePacket(ClientSocket clientSocket, ClientPacket clientPacket)
         {
+            string sid = clientPacket.ReadString();
             string authToken = clientPacket.ReadString();
             int applicationId = clientPacket.ReadInt();
 
-            if (UsersFactory.TryGetUser(authToken, out User user))
+            if (UsersFactory.TryGetUser(sid, authToken, out User user))
             {
                 if (Neptune.Applications.ApplicationFactory.TryGetApplication(applicationId, user.Id, out Neptune.Applications.Application application))
                 {
