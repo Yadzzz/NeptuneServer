@@ -1,4 +1,4 @@
-﻿using NeptuneServer.Neptune.Client.Applications;
+﻿using NeptuneServer.Neptune.Client.Organization;
 using NeptuneServer.Neptune.Client.Users;
 using NUnit.Framework;
 using System;
@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace NeptuneTests
 {
-    public class UsersTests
+    public class OrganizationTests
     {
         [Test]
-        public void TryGetUser()
+        public void TryGetOrganization()
         {
-            if (UsersFactory.TryGetUser("123", "123", out User user))
+            if (OrganizationFactory.TryGetOrganization("123", "123", out Organization organization))
             {
-                Assert.IsTrue(user != null);
+                Assert.IsTrue(organization != null);
 
-                Assert.AreEqual(user.Id, 1);
-                Assert.AreEqual(user.Username, "Yad");
+                Assert.AreEqual(organization.Id, 1);
+                Assert.AreEqual(organization.UserId, 1);
 
                 Assert.Pass();
             }

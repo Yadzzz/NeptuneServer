@@ -1,4 +1,6 @@
 ﻿using NeptuneServer.Communication.Outgoing.Packets;
+using NeptuneServer.Neptune.Client.Applications;
+using NeptuneServer.Neptune.Client.Organization;
 using NeptuneServer.Neptune.Client.Users;
 using NeptuneServer.Server.Connection;
 using System;
@@ -15,26 +17,36 @@ namespace NeptuneServer.Communication.Incoming.Packets
         {
             string sid = clientPacket.ReadString();
             string authToken = clientPacket.ReadString();
+            string organizationSid = clientPacket.ReadString();
+            string organizationAuthToken = clientPacket.ReadString();
             int applicationId = clientPacket.ReadInt();
 
             if (UsersFactory.TryGetUser(sid, authToken, out User user))
             {
-                if (Neptune.Applications.ApplicationFactory.TryGetApplication(applicationId, user.Id, out Neptune.Applications.Application application))
+                if (OrganizationFactory.TryGetOrganization(organizationSid, organizationAuthToken, out Organization organization))
                 {
-                    clientSocket.Client = new Neptune.Client.Client(user, application);
+                    if (ApplicationFactory.TryGetApplication(applicationId, organization.Id, out Neptune.Client.Applications.Application application))
+                    {
+                        clientSocket.Client = new Neptune.Client.Client(user, application, organization);
 
-                    AuthenticationCompletedComposer packet = new AuthenticationCompletedComposer();
-                    clientSocket.Send(packet.Finalize());
+                        AuthenticationCompletedComposer packet = new AuthenticationCompletedComposer();
+                        clientSocket.Send(packet.Finalize());
+                    }
+                    else
+                    {
+                        AuthenticationDeniedComposer packet = new AuthenticationDeniedComposer("Invalid Application ID");
+                        clientSocket.Send(packet.Finalize());
+                    }
                 }
                 else
                 {
-                    AuthenticationDeniedComposer packet = new AuthenticationDeniedComposer("Invalid Application ID");
+                    AuthenticationDeniedComposer packet = new AuthenticationDeniedComposer("Organization Authentication Failed");
                     clientSocket.Send(packet.Finalize());
                 }
             }
             else
             {
-                AuthenticationDeniedComposer packet = new AuthenticationDeniedComposer("Authentication Token Not Valid");
+                AuthenticationDeniedComposer packet = new AuthenticationDeniedComposer("Authentication Failed");
                 clientSocket.Send(packet.Finalize());
             }
         }

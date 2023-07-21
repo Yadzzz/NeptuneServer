@@ -1,18 +1,18 @@
-﻿using NeptuneServer.Server.Database;
+﻿using NeptuneServer.Neptune.Client.Users;
+using NeptuneServer.Server.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeptuneServer.Neptune.Client.Users
+namespace NeptuneServer.Neptune.Client.Organization
 {
-    public static class UsersFactory
+    public class OrganizationFactory
     {
-        public static bool TryGetUser(string sid, string authToken, out User user)
+        public static bool TryGetOrganization(string sid, string authToken, out Organization organization)
         {
-            user = null;
+            organization = null;
 
             if (string.IsNullOrEmpty(sid) || string.IsNullOrEmpty(authToken))
             {
@@ -23,7 +23,7 @@ namespace NeptuneServer.Neptune.Client.Users
             {
                 using (var command = new DatabaseCommand())
                 {
-                    command.SetCommand("SELECT * FROM users WHERE sid = @sid && auth_token = @auth LIMIT 1");
+                    command.SetCommand("SELECT * FROM organizations WHERE sid = @sid && auth_token = @auth LIMIT 1");
                     command.AddParameter("sid", sid);
                     command.AddParameter("auth", authToken);
 
@@ -36,13 +36,11 @@ namespace NeptuneServer.Neptune.Client.Users
 
                         while (reader.Read())
                         {
-                            user = new User
+                            organization = new()
                             {
                                 Id = Convert.ToInt32(reader["id"]),
-                                Username = reader["username"].ToString(),
-                                EmailAdress = reader["email_adress"].ToString(),
-                                Sid = sid,
-                                AuthToken = authToken
+                                UserId = Convert.ToInt32(reader["user_id"]),
+                                Name = reader["name"].ToString()
                             };
                         }
                     }
@@ -53,7 +51,7 @@ namespace NeptuneServer.Neptune.Client.Users
                 //Log to file
             }
 
-            return user != null;
+            return organization != null;
         }
     }
 }

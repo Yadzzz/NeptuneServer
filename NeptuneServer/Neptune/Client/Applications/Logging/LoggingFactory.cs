@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeptuneServer.Neptune.Applications.Logging
+namespace NeptuneServer.Neptune.Client.Applications.Logging
 {
     public static class LoggingFactory
     {

@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeptuneServer.Neptune.Applications
+namespace NeptuneServer.Neptune.Client.Applications
 {
     public static class ApplicationFactory
     {
-        public static bool TryGetApplication(int appId, int userId, out Application application)
+        public static bool TryGetApplication(int appId, int orgId, out Application application)
         {
             application = null;
 
@@ -17,9 +17,9 @@ namespace NeptuneServer.Neptune.Applications
             {
                 using (var command = new DatabaseCommand())
                 {
-                    command.SetCommand("SELECT * FROM applications WHERE id = @id AND user_id = @userid");
+                    command.SetCommand("SELECT * FROM applications WHERE id = @id AND organization_id = @orgid");
                     command.AddParameter("id", appId);
-                    command.AddParameter("userid", userId);
+                    command.AddParameter("orgid", orgId);
 
                     using (var reader = command.ExecuteDataReader())
                     {
@@ -33,7 +33,7 @@ namespace NeptuneServer.Neptune.Applications
                             application = new Application
                             {
                                 Id = appId,
-                                UserId = userId
+                                OrganizationId = orgId
                             };
 
                             return true;

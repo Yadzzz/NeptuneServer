@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Google.Protobuf.WellKnownTypes;
-using NeptuneServer.Neptune.Applications.Logging;
+using NeptuneServer.Neptune.Client.Applications.Logging;
 using NeptuneServer.Neptune.Client.Users;
 using NeptuneServer.Server.Database;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace NeptuneServer.Neptune.Applications
+namespace NeptuneServer.Neptune.Client.Applications
 {
     public class Application
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public int OrganizationId { get; set; }
 
         public void Log(Log log)
         {

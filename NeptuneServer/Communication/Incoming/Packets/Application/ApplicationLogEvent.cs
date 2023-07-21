@@ -1,4 +1,4 @@
-﻿using NeptuneServer.Neptune.Applications.Logging;
+﻿using NeptuneServer.Neptune.Client.Applications.Logging;
 using NeptuneServer.Server.Connection;
 using System;
 using System.Collections.Generic;

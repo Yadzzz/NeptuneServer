@@ -11,6 +11,7 @@ namespace NeptuneServer.Neptune.Client.Users
         public int Id { get; set; }
         public string Username { get; set; }
         public string EmailAdress { get; set; }
+        public string Sid { get; set; }
         public string AuthToken { get; set; }
     }
 }

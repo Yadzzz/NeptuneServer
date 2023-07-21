@@ -1,4 +1,4 @@
-﻿using NeptuneServer.Neptune.Applications;
+﻿using NeptuneServer.Neptune.Client.Applications;
 using NeptuneServer.Neptune.Client.Users;
 using NUnit.Framework;
 using System;
@@ -18,7 +18,7 @@ namespace NeptuneTests
             {
                 Assert.IsTrue(application != null);
                 Assert.AreEqual(application.Id, 1);
-                Assert.AreEqual(application.UserId, 1);
+                Assert.AreEqual(application.OrganizationId, 1);
 
                 Assert.Pass();
             }

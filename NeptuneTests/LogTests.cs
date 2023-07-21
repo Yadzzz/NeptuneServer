@@ -1,5 +1,5 @@
-﻿using NeptuneServer.Neptune.Applications;
-using NeptuneServer.Neptune.Applications.Logging;
+﻿using NeptuneServer.Neptune.Client.Applications;
+using NeptuneServer.Neptune.Client.Applications.Logging;
 using NeptuneServer.Neptune.Client.Users;
 using NUnit.Framework;
 using System;
