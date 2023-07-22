@@ -14,7 +14,7 @@ namespace NeptuneTests
         [Test]
         public void TryGetUser()
         {
-            if (UsersFactory.TryGetUser("123", "123", out User user))
+            if (UsersFactory.TryGetUser("2a60314f-5daf-4d9d-8b03-5d1973a36277", "393be0e4-5aa5-4b5e-b915-3242085ea087", out User user))
             {
                 Assert.IsTrue(user != null);
 

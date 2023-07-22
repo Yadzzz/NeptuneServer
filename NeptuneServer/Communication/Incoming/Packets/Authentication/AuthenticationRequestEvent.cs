@@ -25,16 +25,24 @@ namespace NeptuneServer.Communication.Incoming.Packets
             {
                 if (OrganizationFactory.TryGetOrganization(organizationSid, organizationAuthToken, out Organization organization))
                 {
-                    if (ApplicationFactory.TryGetApplication(applicationId, organization.Id, out Neptune.Client.Applications.Application application))
+                    if (OrganizationFactory.IsAllowedUser(user.Id, organization.Id))
                     {
-                        clientSocket.Client = new Neptune.Client.Client(user, application, organization);
+                        if (ApplicationFactory.TryGetApplication(applicationId, organization.Id, out Neptune.Client.Applications.Application application))
+                        {
+                            clientSocket.Client = new Neptune.Client.Client(user, application, organization);
 
-                        AuthenticationCompletedComposer packet = new AuthenticationCompletedComposer();
-                        clientSocket.Send(packet.Finalize());
+                            AuthenticationCompletedComposer packet = new AuthenticationCompletedComposer();
+                            clientSocket.Send(packet.Finalize());
+                        }
+                        else
+                        {
+                            AuthenticationDeniedComposer packet = new AuthenticationDeniedComposer("Invalid Application ID");
+                            clientSocket.Send(packet.Finalize());
+                        }
                     }
                     else
                     {
-                        AuthenticationDeniedComposer packet = new AuthenticationDeniedComposer("Invalid Application ID");
+                        AuthenticationDeniedComposer packet = new AuthenticationDeniedComposer("Not allowed User");
                         clientSocket.Send(packet.Finalize());
                     }
                 }

@@ -3,6 +3,7 @@ using NeptuneServer.Server.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -52,6 +53,39 @@ namespace NeptuneServer.Neptune.Client.Organization
             }
 
             return organization != null;
+        }
+
+        public static bool IsAllowedUser(int userId, int organizationId)
+        {
+            try
+            {
+                using (var command = new DatabaseCommand())
+                {
+                    command.SetCommand("SELECT * FROM organizations_users WHERE user_id = @userId && organization_id = @orgId LIMIT 1");
+                    command.AddParameter("userId", userId);
+                    command.AddParameter("orgId", organizationId);
+
+                    using (var reader = command.ExecuteDataReader())
+                    {
+                        if (reader == null)
+                        {
+                            return false;
+                        }
+
+                        if(reader.HasRows)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //Log to file
+                return false;
+            }
+
+            return false;
         }
     }
 }

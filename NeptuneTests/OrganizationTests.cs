@@ -28,5 +28,18 @@ namespace NeptuneTests
                 Assert.Fail();
             }
         }
+
+        [Test]
+        public void IsAllowedUser()
+        {
+            if (OrganizationFactory.IsAllowedUser(1, 1))
+            {
+                Assert.Pass();
+            }
+            else
+            {
+                Assert.Fail();
+            }
+        }
     }
 }
