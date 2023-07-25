@@ -1,4 +1,5 @@
-﻿using NeptuneServer.Server.Database;
+﻿using Google.Protobuf.WellKnownTypes;
+using NeptuneServer.Server.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace NeptuneServer.Neptune.Client.Applications
 {
     public static class ApplicationFactory
     {
-        public static bool TryGetApplication(int appId, int orgId, out Application application)
+        public static bool TryGetApplication(string appIdentifier, int orgId, out Application application)
         {
             application = null;
 
@@ -17,8 +18,8 @@ namespace NeptuneServer.Neptune.Client.Applications
             {
                 using (var command = new DatabaseCommand())
                 {
-                    command.SetCommand("SELECT * FROM applications WHERE id = @id AND organization_id = @orgid");
-                    command.AddParameter("id", appId);
+                    command.SetCommand("SELECT * FROM applications WHERE identifier = @identifier AND organization_id = @orgid LIMIT 1");
+                    command.AddParameter("identifier", appIdentifier);
                     command.AddParameter("orgid", orgId);
 
                     using (var reader = command.ExecuteDataReader())
@@ -30,11 +31,14 @@ namespace NeptuneServer.Neptune.Client.Applications
 
                         if (reader.HasRows)
                         {
-                            application = new Application
+                            while(reader.Read())
                             {
-                                Id = appId,
-                                OrganizationId = orgId
-                            };
+                                application = new Application
+                                {
+                                    Id = Convert.ToInt32(reader["id"]),
+                                    OrganizationId = orgId
+                                };
+                            }
 
                             return true;
                         }

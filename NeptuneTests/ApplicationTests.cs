@@ -14,7 +14,7 @@ namespace NeptuneTests
         [Test]
         public void TryGetApplication()
         {
-            if (ApplicationFactory.TryGetApplication(1, 1, out Application application))
+            if (ApplicationFactory.TryGetApplication("123", 1, out Application application))
             {
                 Assert.IsTrue(application != null);
                 Assert.AreEqual(application.Id, 1);

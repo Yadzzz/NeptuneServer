@@ -19,7 +19,7 @@ namespace NeptuneServer.Communication.Incoming.Packets
             string authToken = clientPacket.ReadString();
             string organizationSid = clientPacket.ReadString();
             string organizationAuthToken = clientPacket.ReadString();
-            int applicationId = clientPacket.ReadInt();
+            string applicationIdentifier = clientPacket.ReadString();
 
             if (UsersFactory.TryGetUser(sid, authToken, out User user))
             {
@@ -27,7 +27,7 @@ namespace NeptuneServer.Communication.Incoming.Packets
                 {
                     if (OrganizationFactory.IsAllowedUser(user.Id, organization.Id))
                     {
-                        if (ApplicationFactory.TryGetApplication(applicationId, organization.Id, out Neptune.Client.Applications.Application application))
+                        if (ApplicationFactory.TryGetApplication(applicationIdentifier, organization.Id, out Neptune.Client.Applications.Application application))
                         {
                             clientSocket.Client = new Neptune.Client.Client(user, application, organization);
 
