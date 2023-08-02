@@ -39,8 +39,9 @@ namespace NeptuneServer.Neptune.Client.Users
                             user = new User
                             {
                                 Id = Convert.ToInt32(reader["id"]),
-                                Username = reader["username"].ToString(),
                                 EmailAdress = reader["email_adress"].ToString(),
+                                FullName = reader["full_name"].ToString(),
+                                Identifier = reader["identifier"].ToString(),
                                 Sid = sid,
                                 AuthToken = authToken
                             };
