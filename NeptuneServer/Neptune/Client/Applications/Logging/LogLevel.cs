@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeptuneServer.Server.Logger
+namespace NeptuneServer.Neptune.Client.Applications.Logging
 {
-    public enum LoggingLevel
+    public enum LogLevel
     {
         Info,
         Warning,

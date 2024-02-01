@@ -1,4 +1,4 @@
-﻿using Server.Server.Database;
+﻿using NeptuneServer.Server.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server.Client.Users
+namespace NeptuneServer.Neptune.Client.Users
 {
     public static class UsersFactory
     {
@@ -39,6 +39,8 @@ namespace Server.Client.Users
                             user = new User
                             {
                                 Id = Convert.ToInt32(reader["id"]),
+                                EmailAdress = reader["email_adress"].ToString(),
+                                FullName = reader["full_name"].ToString(),
                                 Identifier = reader["identifier"].ToString(),
                                 Sid = sid,
                                 AuthToken = authToken

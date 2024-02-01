@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server.Server.Connection
+namespace NeptuneServer.Server.Connection
 {
     public class ServerSocket
     {
@@ -16,7 +16,7 @@ namespace Server.Server.Connection
         {
             this._server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             this._server.Bind(new IPEndPoint(IPAddress.Any, 30000));
-            this._server.Listen(ServerConfiguration.MaxSocketConnection);
+            this._server.Listen(NeptuneConfiguration.MaxSocketConnection);
 
             this.BeginAccept();
         }
@@ -45,7 +45,7 @@ namespace Server.Server.Connection
             try
             {
                 Socket client = this._server.EndAccept(result);
-                ServerEnvironment.GetServerEnvironment().ServerManager.ConnectionManager.AddActiveClient(new ClientSocket(client));
+                NeptuneEnvironment.GetNeptuneEnvironment().ServerManager.ConnectionManager.AddActiveClient(new ClientSocket(client));
                 Console.WriteLine("Connection Accepted");
             }
             catch (Exception e)

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Server.Server;
-using Server.Communication;
+using NeptuneServer.Server;
+using NeptuneServer.Communication;
 
-namespace Server
+namespace NeptuneServer
 {
-    public class ServerEnvironment
+    public class NeptuneEnvironment
     {
         public ServerManager ServerManager { get; set; }
         public CommunicationManager CommunicationManager { get; set; }
@@ -18,22 +18,22 @@ namespace Server
             this.ServerManager = new ServerManager();
             this.CommunicationManager = new CommunicationManager();
 
-            Console.WriteLine("Server Initialized ->");
+            Console.WriteLine("Neptune Initialized ->");
             Console.WriteLine();
         }
 
-        private static ServerEnvironment _serverEnvironment;
+        private static NeptuneEnvironment _neptuneEnvironment;
 
-        public static ServerEnvironment GetServerEnvironment()
+        public static NeptuneEnvironment GetNeptuneEnvironment()
         {
-            //_serverEnvironment ??= new ServerEnvironment();
+            //_neptuneEnvironment ??= new NeptuneEnvironment();
 
-            if (_serverEnvironment == null)
+            if (_neptuneEnvironment == null)
             {
-                _serverEnvironment = new ServerEnvironment();
+                _neptuneEnvironment = new NeptuneEnvironment();
             }
 
-            return _serverEnvironment;
+            return _neptuneEnvironment;
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server.Server.Logger
+namespace NeptuneServer.Server.Logger
 {
     public class LoggerConfiguration
     {

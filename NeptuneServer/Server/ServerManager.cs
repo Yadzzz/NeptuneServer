@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Server.Server.Connection;
-using Server.Server.Database;
-using Server.Server.Logger;
+using NeptuneServer.Server.Connection;
+using NeptuneServer.Server.Database;
+using NeptuneServer.Server.Logger;
 
-namespace Server.Server
+namespace NeptuneServer.Server
 {
     public class ServerManager
     {

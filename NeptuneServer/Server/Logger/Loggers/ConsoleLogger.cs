@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server.Server.Logger.Loggers
+namespace NeptuneServer.Server.Logger.Loggers
 {
     public  class ConsoleLogger : ILogger
     {

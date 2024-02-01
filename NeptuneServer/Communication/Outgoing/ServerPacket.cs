@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server.Communication.Outgoing
+namespace NeptuneServer.Communication.Outgoing
 {
     public class ServerPacket
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace Server.Server.Database
+namespace NeptuneServer.Server.Database
 {
     public class DatabaseManager
     {

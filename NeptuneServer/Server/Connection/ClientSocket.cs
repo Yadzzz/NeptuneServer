@@ -4,11 +4,12 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using Server.Communication;
-using Server.Communication.Incoming;
-using Server.Communication.Outgoing.Packets;
+using NeptuneServer.Communication;
+using NeptuneServer.Communication.Incoming;
+using NeptuneServer.Communication.Outgoing.Packets;
+using NeptuneServer.Neptune.Client;
 
-namespace Server.Server.Connection
+namespace NeptuneServer.Server.Connection
 {
     public class ClientSocket
     {
@@ -29,7 +30,7 @@ namespace Server.Server.Connection
         {
             get
             {
-                return this.Client != null && this.Client.User != null;
+                return this.Client != null && this.Client.User != null && this.Client.Application != null;
             }
         }
 
@@ -67,7 +68,7 @@ namespace Server.Server.Connection
                     }
                     else
                     {
-                        if (ServerEnvironment.GetServerEnvironment().CommunicationManager.GetPacket(header, out IPacket packet))
+                        if (NeptuneEnvironment.GetNeptuneEnvironment().CommunicationManager.GetPacket(header, out IPacket packet))
                         {
                             packet.ExecutePacket(this, clientPacket);
                             Console.WriteLine("Packet ID [" + header + "] Executed!");
@@ -112,7 +113,7 @@ namespace Server.Server.Connection
 
             }
 
-            ServerEnvironment.GetServerEnvironment().ServerManager.ConnectionManager.RemoveActiveClient(this);
+            NeptuneEnvironment.GetNeptuneEnvironment().ServerManager.ConnectionManager.RemoveActiveClient(this);
             Console.WriteLine("Client Disconnected");
         }
     }

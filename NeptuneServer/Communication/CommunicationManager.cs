@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Server.Communication.Outgoing;
-using Server.Communication.Incoming;
-using Server.Communication.Incoming.Packets;
+using NeptuneServer.Communication.Outgoing;
+using NeptuneServer.Communication.Incoming;
+using NeptuneServer.Communication.Incoming.Packets;
+using NeptuneServer.Communication.Incoming.Packets.Application;
 
-namespace Server.Communication
+namespace NeptuneServer.Communication
 {
     public class CommunicationManager
     {
@@ -29,6 +30,7 @@ namespace Server.Communication
         public void LoadPackets()
         {
             this.Packets.Add(IncomingPacketHeaders.AuthenticationRequestEvent, new AuthenticationRequestEvent());
+            this.Packets.Add(IncomingPacketHeaders.ApplicationLogEvent, new ApplicationLogEvent());
         }
     }
 }

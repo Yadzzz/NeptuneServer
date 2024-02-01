@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server.Server.Connection
+namespace NeptuneServer.Server.Connection
 {
     public class ConnectionManager
     {
