@@ -59,7 +59,7 @@ namespace NeptuneServer.Server.Connection
                     int header = BitConverter.ToInt32(newBytes, 0);
                     ClientPacket clientPacket = new ClientPacket(newBytes, header);
 
-                    Console.WriteLine("Packet ID [" + header + "] Recieved!");
+                    //Console.WriteLine("Packet ID [" + header + "] Recieved!");
                     
                     if (!this.IsAuthenticated && header != IncomingPacketHeaders.AuthenticationRequestEvent)
                     {

@@ -25,7 +25,7 @@ namespace NeptuneServer.Communication.Incoming.Packets
             {
                 if (OrganizationFactory.TryGetOrganization(organizationSid, organizationAuthToken, out Organization organization))
                 {
-                    if (OrganizationFactory.IsAllowedUser(user.Id, organization.Id))
+                    if (organization.UserId == user.Id || OrganizationFactory.IsAllowedUser(user.Id, organization.Id))
                     {
                         if (ApplicationFactory.TryGetApplication(applicationIdentifier, organization.Id, out Neptune.Client.Applications.Application application))
                         {

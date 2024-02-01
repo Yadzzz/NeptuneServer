@@ -61,10 +61,9 @@ namespace NeptuneServer.Neptune.Client.Organization
             {
                 using (var command = new DatabaseCommand())
                 {
-                    command.SetCommand("SELECT * FROM organizations_users WHERE user_id = @userId && organization_id = @orgId && active = @active LIMIT 1");
+                    command.SetCommand("SELECT * FROM organizations_users WHERE user_id = @userId && organization_id = @orgId LIMIT 1");
                     command.AddParameter("userId", userId);
                     command.AddParameter("orgId", organizationId);
-                    command.AddParameter("active", 1);
 
                     using (var reader = command.ExecuteDataReader())
                     {

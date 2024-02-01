@@ -19,7 +19,7 @@ namespace NeptuneTests
                 Assert.IsTrue(user != null);
 
                 Assert.AreEqual(user.Id, 1);
-                Assert.AreEqual(user.Username, "Yad");
+                Assert.AreEqual(user.EmailAdress, "yadmarzan@gmail.com");
 
                 Assert.Pass();
             }
