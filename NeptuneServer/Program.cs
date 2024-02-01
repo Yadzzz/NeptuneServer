@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace NeptuneServer
+namespace Server
 {
     internal class Program
     {
@@ -8,7 +8,7 @@ namespace NeptuneServer
         {
             Console.ForegroundColor = ConsoleColor.White;
 
-            NeptuneEnvironment.GetNeptuneEnvironment().Initialize();
+            ServerEnvironment.GetServerEnvironment().Initialize();
 
             while(true)
             {

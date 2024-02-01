@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace NeptuneServer.Server.Database
+namespace Server.Server.Database
 {
     public abstract class DatabaseConnection
     {
@@ -13,7 +13,7 @@ namespace NeptuneServer.Server.Database
 
         public DatabaseConnection()
         {
-             this._mySqlConnection = new MySqlConnection(NeptuneConfiguration.ConnectionString);
+             this._mySqlConnection = new MySqlConnection(ServerConfiguration.ConnectionString);
         }
 
         protected void OpenConnection()

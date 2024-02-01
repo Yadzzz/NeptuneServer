@@ -1,11 +1,11 @@
-﻿using NeptuneServer.Server.Logger.Loggers;
+﻿using Server.Server.Logger.Loggers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeptuneServer.Server.Logger
+namespace Server.Server.Logger
 {
     public class LoggerManager
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeptuneServer.Communication.Outgoing.Packets
+namespace Server.Communication.Outgoing.Packets
 {
     public class AuthenticationDeniedComposer : ServerPacket
     {

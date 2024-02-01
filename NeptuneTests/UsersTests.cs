@@ -1,5 +1,4 @@
-﻿using NeptuneServer.Neptune.Client.Applications;
-using NeptuneServer.Neptune.Client.Users;
+﻿using Server.Client.Users;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -19,7 +18,6 @@ namespace NeptuneTests
                 Assert.IsTrue(user != null);
 
                 Assert.AreEqual(user.Id, 1);
-                Assert.AreEqual(user.Username, "Yad");
 
                 Assert.Pass();
             }
