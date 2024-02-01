@@ -1,12 +1,12 @@
-﻿using NeptuneServer.Communication.Incoming;
-using NeptuneServer.Server.Connection;
+﻿using Server.Communication.Incoming;
+using Server.Server.Connection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeptuneServer.Communication
+namespace Server.Communication
 {
     public interface IPacket
     {

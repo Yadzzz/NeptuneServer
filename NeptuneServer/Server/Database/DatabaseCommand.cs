@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeptuneServer.Server.Database
+namespace Server.Server.Database
 {
     public class DatabaseCommand : DatabaseConnection, IDisposable
     {

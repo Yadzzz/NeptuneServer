@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeptuneServer.Neptune.Client
+namespace Server.Client
 {
     public class ClientManager
     {
