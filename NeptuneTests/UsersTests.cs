@@ -1,10 +1,10 @@
-﻿using Server.Client.Users;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NeptuneServer.Neptune.Client.Users;
 
 namespace NeptuneTests
 {

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NeptuneServer.Server;
 using NeptuneServer.Communication;
+using NeptuneServer.Neptune.Client;
 
 namespace NeptuneServer
 {
@@ -12,11 +13,13 @@ namespace NeptuneServer
     {
         public ServerManager ServerManager { get; set; }
         public CommunicationManager CommunicationManager { get; set; }
+        public ClientManager ClientManager { get; set; }
 
         public void Initialize()
         {
             this.ServerManager = new ServerManager();
             this.CommunicationManager = new CommunicationManager();
+            this.ClientManager = new ClientManager();
 
             Console.WriteLine("Neptune Initialized ->");
             Console.WriteLine();
